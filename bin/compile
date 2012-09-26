@@ -38,10 +38,11 @@ fi
 GOROOT=$build/.go/$ver/go export GOROOT
 PATH=$GOROOT/bin:$PATH
 
-if ! (which hg > /dev/null && which bzr > /dev/null)
+if ! (which hg > /dev/null)
 then
     echo -n "       Installing Virtualenv..."
     virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
+    echo -n "running virtualenv"
     . $venv/bin/activate > /dev/null 2>&1
     echo " done"
 
