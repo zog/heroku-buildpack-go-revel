@@ -55,7 +55,7 @@ then
 fi
 
 mkdir -p $build/.go/src/_app
-mv $build/* $build/.go/src/_app
+cp -R $build/* $build/.go/src/_app
 
 export GOPATH=$build/.go
 
