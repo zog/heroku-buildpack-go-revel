@@ -75,9 +75,11 @@ mkdir -p $p
 cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
-echo "-----> Running: go get ./..."
-cd $p
-go get ./... | sed -u 's/^/       /'
+echo "-----> Getting and building Revel"
+cd $GOPATH
+go get github.com/robfig/revel | sed -u 's/^/       /'
+go get github.com/jamesward/revel | sed -u 's/^/       /'
+go build -o bin/revel github.com/jamesward/revel/cmd | sed -u 's/^/       /'
 
 mkdir -p $build/bin
 mv $GOPATH/bin/* $build/bin

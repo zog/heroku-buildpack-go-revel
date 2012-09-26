@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 # bin/release <build-dir>
 
+build=$(cd "$1/" && pwd)
+name=$(cat $build/.godir)
+
+echo "Build = $build"
+echo "Name = $name"
+
 cat <<EOF
 ---
 config_vars:
   PATH: /app/bin:/usr/local/bin:/usr/bin:/bin
+default_process_types:
+  web: bin/revel run $name prod \$PORT
 EOF
+
