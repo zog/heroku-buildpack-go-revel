@@ -54,6 +54,7 @@ then
 #    echo " done"
 fi
 
+echo -n "-----> Copying src to .go/src/_app"
 mkdir -p $build/.go/src/_app
 cp -R $build/* $build/.go/src/_app
 
