@@ -11,6 +11,7 @@ cat <<EOF
 ---
 config_vars:
   PATH: /app/bin:/usr/local/bin:/usr/bin:/bin
+  GOPATH: $build
 default_process_types:
   web: bin/revel run $name prod \$PORT
 EOF
