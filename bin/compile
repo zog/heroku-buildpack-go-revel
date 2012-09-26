@@ -26,7 +26,7 @@ then
     echo "-----> Using Go $ver"
 else
     rm -rf $build/.go/* # be sure not to build up cruft
-    mkdir -p $buid/.go/$ver
+    mkdir -p $build/.go/$ver
     cd $build/.go/$ver
     echo -n "-----> Installing Go $ver..."
     curl -sO $url
