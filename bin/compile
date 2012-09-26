@@ -78,6 +78,8 @@ then
   mv $build/public $p
 fi
 
+export GOPATH=$build
+
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Getting and building Revel"
 cd $build
