@@ -62,15 +62,17 @@ then
     pip install --use-mirrors mercurial > /dev/null 2>&1
     echo " done"
 
-    echo -n "       Installing Bazaar..."
-    pip install --use-mirrors bzr > /dev/null 2>&1
-    echo " done"
+#    echo -n "       Installing Bazaar..."
+#    pip install --use-mirrors bzr > /dev/null 2>&1
+#    echo " done"
 fi
 
 name=$(cat $build/.godir)
 p=$build/src/$name
 mkdir -p $p
-cp -R $build/* $p
+mv $build/app $p
+mv $build/conf $p
+mv $build/public $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Getting and building Revel"
