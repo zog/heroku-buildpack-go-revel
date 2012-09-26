@@ -72,7 +72,11 @@ p=$build/src/$name
 mkdir -p $p
 mv $build/app $p
 mv $build/conf $p
-mv $build/public $p
+
+if test -e $build/public && test -d $build/public
+then
+  mv $build/public $p
+fi
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Getting and building Revel"
