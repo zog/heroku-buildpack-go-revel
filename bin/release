@@ -2,17 +2,13 @@
 # bin/release <build-dir>
 
 build=$(cd "$1/" && pwd)
-name=$(cat $build/.godir)
-
-echo "Build = $build"
-echo "Name = $name"
 
 cat <<EOF
 ---
 config_vars:
-  PATH: /app/bin:/usr/local/bin:/usr/bin:/bin
-  GOPATH: $build
+  PATH: /app/.go/1.0.3/bin:/usr/local/bin:/usr/bin:/bin
+  GOPATH: /app/.go/bin
 default_process_types:
-  web: bin/revel run $name prod \$PORT
+  web: bin/revel run _app prod \$PORT
 EOF
 
