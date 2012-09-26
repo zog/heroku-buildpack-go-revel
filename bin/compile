@@ -49,9 +49,7 @@ else
 fi
 
 GOROOT=$cache/go-$ver/go export GOROOT
-GOPATH=$build/.heroku/g export GOPATH
 PATH=$GOROOT/bin:$PATH
-
 
 if ! (which hg > /dev/null && which bzr > /dev/null)
 then
@@ -70,17 +68,13 @@ then
 fi
 
 name=$(cat $build/.godir)
-p=$GOPATH/src/$name
+p=$build/src/$name
 mkdir -p $p
 cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Getting and building Revel"
-cd $GOPATH
+cd $build
 go get github.com/robfig/revel | sed -u 's/^/       /'
 go get github.com/jamesward/revel | sed -u 's/^/       /'
 go build -o bin/revel github.com/jamesward/revel/cmd | sed -u 's/^/       /'
-
-mkdir -p $build/bin
-mv $GOPATH/bin/* $build/bin
-rm -rf $build/.heroku
