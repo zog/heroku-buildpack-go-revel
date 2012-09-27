@@ -52,9 +52,9 @@ then
     echo " done"
 fi
 
-echo "-----> Copying src to .go/src/_app"
-mkdir -p $build/.go/src/_app
-mv $build/* $build/.go/src/_app
+echo "-----> Copying src to .go/src/pkg/_app"
+mkdir -p $build/.go/src/pkg/_app
+mv $build/* $build/.go/src/pkg/_app
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Getting and building Revel"
