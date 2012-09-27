@@ -5,7 +5,7 @@ cat <<EOF
 ---
 config_vars:
   PATH: /app/.go/bin:/usr/local/bin:/usr/bin:/bin
-  GOPATH: /app/.go
+  GOROOT: /app/.go
 default_process_types:
   web: bin/revel run _app prod \$PORT
 EOF
