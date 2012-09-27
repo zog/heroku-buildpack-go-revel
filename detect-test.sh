@@ -1,16 +1,7 @@
-before() {
-  cp -r test detect-test
+it_is_revel_if_conf_files_exist() {
+  sh -x bin/detect test
 }
 
-after() {
-  rm -rf detect-test
-}
-
-it_is_go_if_go_files_under_src() {
-  sh -x bin/detect detect-test/
-}
-
-it_is_not_go_without_all_sh_or_go_files() {
-  rm -rf detect-test/src/*
-  ! sh -x bin/detect detect-test/
+it_is_not_revel_if_conf_files_do_not_exist() {
+  ! sh -x bin/detect .
 }

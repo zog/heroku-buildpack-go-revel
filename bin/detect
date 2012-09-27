@@ -2,7 +2,7 @@
 # bin/detect <build-dir>
 set -e
 
-if test -n "$(find "$1" -type f -name '*.go' | sed 1q)"
+if (test -e $1/conf/app.conf && test -e $1/conf/routes)
 then echo Revel
 else echo no; exit 1
 fi
