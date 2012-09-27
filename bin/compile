@@ -37,8 +37,7 @@ fi
 
 cp -R $cache/go-$ver/go $build/.go
 
-export GOROOT=$build/.go
-PATH=$GOROOT/bin:$PATH
+export GOPATH=$build/.go
 
 if ! (which hg > /dev/null)
 then
