@@ -57,11 +57,9 @@ echo -n "-----> Copying src to .go/src/_app"
 mkdir -p $build/.go/src/_app
 mv $build/* $build/.go/src/_app
 
-export GOPATH=$build/.go
-
 unset GIT_DIR # unset git dir or it will mess with goinstall
-echo "-----> Getting and building Revel"
+echo -n "-----> Getting and building Revel"
 cd $build/.go
-go get github.com/robfig/revel | sed -u 's/^/       /'
-go get github.com/jamesward/revel | sed -u 's/^/       /'
-go build -o bin/revel github.com/jamesward/revel/cmd | sed -u 's/^/       /'
+bin/go get github.com/robfig/revel | sed -u 's/^/       /'
+bin/go get github.com/jamesward/revel | sed -u 's/^/       /'
+bin/go build -o bin/revel github.com/jamesward/revel/cmd | sed -u 's/^/       /'
