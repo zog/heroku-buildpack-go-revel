@@ -21,13 +21,13 @@ virtualenv() {
     python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
 }
 
-if test -d $build/.go/$ver/go
+if test -d $cache/go-$ver
 then
     echo "-----> Using Go $ver"
 else
-    rm -rf $build/.go/* # be sure not to build up cruft
-    mkdir -p $build/.go/$ver
-    cd $build/.go/$ver
+    rm -rf $cache/go-$ver/* # be sure not to build up cruft
+    mkdir -p $cache/go-$ver
+    cd $cache/go-$ver
     echo -n "-----> Installing Go $ver..."
     curl -sO $url
     tar zxf $file
@@ -35,7 +35,9 @@ else
     echo " done"
 fi
 
-GOROOT=$build/.go/$ver/go export GOROOT
+cp -R $cache/go-$ver/go $build/.go
+
+export GOROOT=$build/.go
 PATH=$GOROOT/bin:$PATH
 
 if ! (which hg > /dev/null)
@@ -49,21 +51,17 @@ then
     echo -n "       Installing Mercurial..."
     pip install --use-mirrors mercurial > /dev/null 2>&1
     echo " done"
-
-#    echo -n "       Installing Bazaar..."
-#    pip install --use-mirrors bzr > /dev/null 2>&1
-#    echo " done"
 fi
 
 echo -n "-----> Copying src to .go/src/_app"
 mkdir -p $build/.go/src/_app
-cp -R $build/* $build/.go/src/_app
+mv $build/* $build/.go/src/_app
 
 export GOPATH=$build/.go
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Getting and building Revel"
-cd $build
+cd $build/.go
 go get github.com/robfig/revel | sed -u 's/^/       /'
 go get github.com/jamesward/revel | sed -u 's/^/       /'
 go build -o bin/revel github.com/jamesward/revel/cmd | sed -u 's/^/       /'
