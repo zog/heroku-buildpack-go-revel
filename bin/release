@@ -5,7 +5,7 @@ name=$(cat $1/.godir)
 cat <<EOF
 ---
 config_vars:
-  PATH: /app/bin:/usr/local/bin:/usr/bin:/bin
+  PATH: /app/bin:/app/.go/bin:/app/.goroot/bin:/usr/local/bin:/usr/bin:/bin
   GOROOT: /app/.goroot
   GOPATH: /app/.go
 default_process_types:
