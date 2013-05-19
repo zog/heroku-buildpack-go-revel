@@ -6,9 +6,9 @@ set -eo pipefail
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
-ver=1.0.3
-file=go$ver.linux-amd64.tar.gz
-url=http://go.googlecode.com/files/$file
+ver=${GOVERSION:-1.1}
+file=${GOFILE:-go$ver.$(uname|tr A-Z a-z)-amd64.tar.gz}
+url=${GOURL:-http://go.googlecode.com/files/$file}
 buildpack=$(dirname $(dirname $0))
 
 # Python
@@ -23,8 +23,8 @@ virtualenv() {
 
 if ! test -f $build/.godir
 then
-    echo >&2 " !     A .godir is required."
-    echo >&2 " !     See https://gist.github.com/299535bbf56bf3016cba for instructions."
+    echo >&2 " !     A .godir is required. For instructions:"
+    echo >&2 " !     http://mmcgrana.github.com/2012/09/getting-started-with-go-on-heroku"
     exit 1
 fi
 
@@ -77,9 +77,9 @@ mkdir -p $p
 cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
-echo "-----> Running: go get ./..."
+echo "-----> Running: go get -tags heroku ./..."
 cd $p
-go get ./... | sed -u 's/^/       /'
+go get -tags heroku ./...
 
 mkdir -p $build/bin
 go get github.com/robfig/revel
