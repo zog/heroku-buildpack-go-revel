@@ -77,9 +77,9 @@ mkdir -p $p
 cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
-echo "-----> Running: go get -v -tags heroku ./..."
+echo "-----> Running: go get -tags heroku ./..."
 cd $p
-go get -v -tags heroku ./...
+go get -tags heroku ./...
 
 mkdir -p $build/bin
 go get github.com/robfig/revel/revel
