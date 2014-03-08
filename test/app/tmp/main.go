@@ -2,11 +2,10 @@ package main
 
 import (
 	"flag"
+	"github.com/revel/revel"
 	"reflect"
-	"github.com/robfig/revel"
-	
-  "github.com/jamesward/hellorevel/app/controllers"
-  
+
+	"github.com/jamesward/hellorevel/app/controllers"
 )
 
 var (
@@ -23,21 +22,19 @@ func main() {
 	rev.INFO.Println("Running revel server")
 	flag.Parse()
 	rev.Init(*runMode, *importPath, *srcPath)
-	
+
 	rev.RegisterController((*controllers.Application)(nil),
 		[]*rev.MethodType{
 			&rev.MethodType{
 				Name: "Index",
-				Args: []*rev.MethodArg{ 
-			  },
-				RenderArgNames: map[int][]string{ 
-					13: []string{ 
+				Args: []*rev.MethodArg{},
+				RenderArgNames: map[int][]string{
+					13: []string{
 						"message",
 					},
 				},
 			},
-			
 		})
-	
+
 	rev.Run(*port)
 }
