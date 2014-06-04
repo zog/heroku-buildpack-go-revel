@@ -18,16 +18,15 @@ plat=$(uname|tr A-Z a-z)-$arch
 
 # Python
 echo '== setting up python'
-#venv=$cache/venv
+venv=$cache/venv
 mkdir -p $cache/pip
-#python=python2.7
+python=python2.7
 PATH=$buildpack/$plat/bin:$venv/bin:$PATH
 
-#echo $python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
-
-#virtualenv() {
-#    python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
-#}
+virtualenv() {
+    echo $python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
+    python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
+}
 
 echo '== checking godeps'
 if test -f $build/Godeps
@@ -72,7 +71,7 @@ echo '== Installing hg and bzr'
 #then
     echo "       Installing Virtualenv..."
     #virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
-    #virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv
+    virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv
     echo "..."
     #. $venv/bin/activate > /dev/null 2>&1
     echo "done"
