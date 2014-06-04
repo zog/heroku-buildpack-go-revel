@@ -66,9 +66,6 @@ else
     echo " done"
 fi
 
-echo "=== getting godep"
-go get github.com/tools/godep
-
 #cp -R $cache/go-$ver/go $build/.goroot
 
 #GOROOT=$build/.goroot export GOROOT
@@ -80,6 +77,10 @@ GOBIN=$build/bin export GOBIN
 GOROOT=$cache/$ver/go export GOROOT
 GOPATH=$build/.heroku/g export GOPATH
 PATH=$GOROOT/bin:$PATH
+
+echo "=== getting godep"
+go get github.com/tools/godep
+
 export GOPATH=`godep path`:$GOPATH
 
 
