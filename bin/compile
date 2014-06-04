@@ -77,13 +77,13 @@ echo '== Installing hg and bzr'
     #. $venv/bin/activate > /dev/null 2>&1
     echo "done"
 
-    echo -n "       Installing Mercurial..."
-    pip install mercurial > /dev/null 2>&1
-    echo " done"
+    echo "       Installing Mercurial..."
+    pip install mercurial
+    echo "       done"
 
-    echo -n "       Installing Bazaar..."
-    pip install bzr > /dev/null 2>&1
-    echo " done"
+    echo "       Installing Bazaar..."
+    pip install bzr
+    echo "       done"
 #fi
 
 p=$GOPATH/src/$name
