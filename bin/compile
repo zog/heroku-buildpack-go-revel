@@ -34,7 +34,7 @@ virtualenv() {
 }
 
 echo '== checking godeps'
-if test -f $build/Godeps
+if test -e $build/Godeps
 then name=$(<$build/Godeps jq -r .ImportPath)
 elif test -f $build/.godir
 then name=$(cat $build/.godir)
