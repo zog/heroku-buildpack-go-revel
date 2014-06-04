@@ -99,7 +99,7 @@ cp -R $build/* $p
 echo "== $build/Godeps"
 unset GIT_DIR # unset git dir or it will mess with goinstall
 cd $p
-if test -f $build/Godeps
+if test -e $build/Godeps
 then
     echo "-----> Running: godep go get -tags heroku ./..."
     godep go get -v -tags heroku ./...
