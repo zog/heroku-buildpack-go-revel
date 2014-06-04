@@ -70,10 +70,12 @@ PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 echo '== Installing hg and bzr'
 #if ! (which hg > /dev/null && which bzr > /dev/null)
 #then
-    echo -n "       Installing Virtualenv..."
-    virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
+    echo "       Installing Virtualenv..."
+    #virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
+    virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv
+    echo "..."
     . $venv/bin/activate > /dev/null 2>&1
-    echo " done"
+    echo "done"
 
     echo -n "       Installing Mercurial..."
     pip install mercurial > /dev/null 2>&1
