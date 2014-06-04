@@ -17,6 +17,7 @@ fi
 plat=$(uname|tr A-Z a-z)-$arch
 
 # Python
+echo '== setting up python'
 venv=$cache/venv
 mkdir -p $cache/pip
 python=python2.7
@@ -26,6 +27,7 @@ virtualenv() {
     python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
 }
 
+echo '== checking godeps'
 if test -f $build/Godeps
 then name=$(<$build/Godeps jq -r .ImportPath)
 elif test -f $build/.godir
@@ -63,6 +65,7 @@ GOPATH=$build/.go export GOPATH
 PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 
+echo '== Installing hg and bzr'
 if ! (which hg > /dev/null && which bzr > /dev/null)
 then
     echo -n "       Installing Virtualenv..."
@@ -83,6 +86,7 @@ p=$GOPATH/src/$name
 mkdir -p $p
 cp -R $build/* $p
 
+echo "== $build/Godeps"
 unset GIT_DIR # unset git dir or it will mess with goinstall
 cd $p
 if test -f $build/Godeps
