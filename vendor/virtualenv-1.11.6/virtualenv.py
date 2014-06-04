@@ -13,7 +13,7 @@ import optparse
 import re
 import shutil
 import logging
-import tempfile
+#import tempfile
 import zlib
 import errno
 import glob
