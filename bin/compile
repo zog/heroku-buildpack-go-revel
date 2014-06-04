@@ -25,12 +25,12 @@ PATH=$buildpack/$plat/bin:$venv/bin:$PATH
 
 virtualenv() {
     echo
-    echo python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
+    echo python "$buildpack/vendor/virtualenv-1.11.6/virtualenv.py" "$@"
     echo
     which python
     which $python
     echo
-    python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
+    python "$buildpack/vendor/virtualenv-1.11.6/virtualenv.py" "$@"
 }
 
 echo '== checking godeps'
