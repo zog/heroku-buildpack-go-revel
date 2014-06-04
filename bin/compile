@@ -72,9 +72,9 @@ echo '== Installing hg and bzr'
 #then
     echo "       Installing Virtualenv..."
     #virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
-    virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv
+    #virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv
     echo "..."
-    . $venv/bin/activate > /dev/null 2>&1
+    #. $venv/bin/activate > /dev/null 2>&1
     echo "done"
 
     echo -n "       Installing Mercurial..."
