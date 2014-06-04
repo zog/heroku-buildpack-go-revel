@@ -18,16 +18,16 @@ plat=$(uname|tr A-Z a-z)-$arch
 
 # Python
 echo '== setting up python'
-venv=$cache/venv
+#venv=$cache/venv
 mkdir -p $cache/pip
-python=python2.7
+#python=python2.7
 PATH=$buildpack/$plat/bin:$venv/bin:$PATH
 
-echo $python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
+#echo $python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
 
-virtualenv() {
-    python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
-}
+#virtualenv() {
+#    python "$buildpack/vendor/virtualenv-1.7/virtualenv.py" "$@"
+#}
 
 echo '== checking godeps'
 if test -f $build/Godeps
