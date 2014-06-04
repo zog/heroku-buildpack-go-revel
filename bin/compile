@@ -66,11 +66,17 @@ else
     echo " done"
 fi
 
-cp -R $cache/go-$ver/go $build/.goroot
+#cp -R $cache/go-$ver/go $build/.goroot
 
-GOROOT=$build/.goroot export GOROOT
-GOPATH=$build/.go export GOPATH
-PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+#GOROOT=$build/.goroot export GOROOT
+#GOPATH=$build/.go export GOPATH
+#PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+mkdir -p $build/bin
+GOBIN=$build/bin export GOBIN
+GOROOT=$cache/$ver/go export GOROOT
+GOPATH=$build/.heroku/g export GOPATH
+PATH=$GOROOT/bin:$PATH
 
 
 echo '== Installing hg and bzr'
