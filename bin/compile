@@ -34,8 +34,10 @@ virtualenv() {
 }
 
 echo '== checking godeps'
-if test -e $build/Godeps
-then name=$(<$build/Godeps jq -r .ImportPath)
+if test -d $build/Godeps
+then
+    name=$(<$build/Godeps/Godeps.json jq -r .ImportPath)
+    ver=$(<$build/Godeps/Godeps.json jq -r .GoVersion)
 elif test -f $build/.godir
 then name=$(cat $build/.godir)
 else
