@@ -78,11 +78,11 @@ echo '== Installing hg and bzr'
     echo "done"
 
     echo "       Installing Mercurial..."
-    pip install mercurial
+    #pip install mercurial
     echo "       done"
 
     echo "       Installing Bazaar..."
-    pip install bzr
+    #pip install bzr
     echo "       done"
 #fi
 
