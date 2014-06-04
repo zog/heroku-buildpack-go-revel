@@ -30,7 +30,7 @@ virtualenv() {
     which python
     which $python
     echo
-    python "$buildpack/vendor/virtualenv-1.11.6/virtualenv.py" "$@"
+    ( cd "$buildpack/vendor/virtualenv-1.11.6/" ; python virtualenv.py "$@" )
 }
 
 echo '== checking godeps'
@@ -76,7 +76,8 @@ echo '== Installing hg and bzr'
 #then
     echo "       Installing Virtualenv..."
     #virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
-    virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv
+    #virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv
+    virtualenv --python $python --prompt='(venv) ' $venv
     echo "..."
     #. $venv/bin/activate > /dev/null 2>&1
     echo "done"
