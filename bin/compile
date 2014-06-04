@@ -72,10 +72,6 @@ GOROOT=$build/.goroot export GOROOT
 GOPATH=$build/.go export GOPATH
 PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
-echo "=== getting godep"
-go get github.com/tools/godep
-
-export GOPATH=`godep path`:$GOPATH
 
 
 echo '== Installing hg and bzr'
@@ -108,6 +104,10 @@ unset GIT_DIR # unset git dir or it will mess with goinstall
 cd $p
 if test -e $build/Godeps
 then
+	echo "=== getting godep"
+	go get github.com/tools/godep
+
+	export GOPATH=`godep path`:$GOPATH
     echo "-----> Running: godep go install -tags heroku ./..."
     godep go install -tags heroku ./...
     #godep go get -v -tags heroku ./...
