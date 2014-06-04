@@ -75,7 +75,7 @@ PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 
 echo '== Installing hg and bzr'
-if ! (test -d $build/Godeps || (which hg >/dev/null && which bzr >/dev/null))
+if ! (which hg >/dev/null && which bzr >/dev/null)
 then
     echo "       Installing Virtualenv..."
     #virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
@@ -105,10 +105,7 @@ cd $p
 if test -e $build/Godeps
 then
     echo "=== getting godep"
-    alias hg=echo
     go get github.com/tools/godep
-
-    godep help
     export GOPATH=`godep path`:$GOPATH
     echo "-----> Running: godep go install -tags heroku ./..."
     godep go install -tags heroku ./...
