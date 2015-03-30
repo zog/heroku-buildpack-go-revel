@@ -6,7 +6,7 @@ set -eo pipefail
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
-ver=${GOVERSION:-1.1.2}
+ver=${GOVERSION:-1.4.2}
 file=${GOFILE:-go$ver.$(uname|tr A-Z a-z)-amd64.tar.gz}
 url=${GOURL:-http://go.googlecode.com/files/$file}
 buildpack=$(dirname $(dirname $0))
@@ -116,7 +116,7 @@ else
 fi
 
 mkdir -p $build/bin
-if test -d $GOPATH/bin 
+if test -d $GOPATH/bin
 then
     mv $GOPATH/bin/* $build/bin
 fi
